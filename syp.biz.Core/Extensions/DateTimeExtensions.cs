@@ -15,5 +15,12 @@ namespace syp.biz.Core.Extensions
         /// <param name="dateTime">The <see cref="DateTime"/> to convert.</param>
         /// <returns>The <paramref name="dateTime"/>'s EPOCH Unix time.</returns>
         public static long ToUnixTime(this DateTime dateTime) => (long)(dateTime - Epoch).TotalMilliseconds;
+
+        /// <summary>
+        /// Converts <paramref name="unixEpochTime"/> to <see cref="DateTime"/>.
+        /// </summary>
+        /// <param name="unixEpochTime">The Epoch Unix time to convert.</param>
+        /// <returns>A <see cref="DateTime"/> representation of <paramref name="unixEpochTime"/>.</returns>
+        public static DateTime ToDateTime(this long unixEpochTime) => Epoch + TimeSpan.FromMilliseconds(unixEpochTime);
     }
 }

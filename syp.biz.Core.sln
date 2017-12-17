@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "syp.biz.Core", "syp.biz.Core\syp.biz.Core.csproj", "{B4C2D095-BAF8-4415-94AF-C363748B1808}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "syp.biz.Core", "syp.biz.Core\syp.biz.Core.csproj", "{B4C2D095-BAF8-4415-94AF-C363748B1808}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{BC88737D-46BF-488E-8C79-63B715F6C132}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
