@@ -7,8 +7,19 @@ namespace syp.biz.Core.Logging
 	/// </summary>
 	public interface ILogger
 	{
+		/// <summary>
+		/// Denotes if the logger should log debug level messages.
+		/// </summary>
 		bool LogDebugLevel { get; set; }
+
+		/// <summary>
+		/// Denotes if the logger should log info level messages.
+		/// </summary>
 		bool LogInfoLevel { get; set; }
+
+		/// <summary>
+		/// Denotes if the logger should log error level messages.
+		/// </summary>
 		bool LogErrorLevel { get; set; }
 
 		/// <summary>

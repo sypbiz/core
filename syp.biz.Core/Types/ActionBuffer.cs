@@ -5,6 +5,9 @@ using syp.biz.Core.Extensions;
 
 namespace syp.biz.Core.Types
 {
+	/// <summary>
+	/// Buffers actions to be executed out-of-band in a FIFO manner on an execution thread.
+	/// </summary>
 	public class ActionBuffer : IDisposable
 	{
 		private readonly BlockingCollection<Action> _pendingActions = new BlockingCollection<Action>();
@@ -12,8 +15,18 @@ namespace syp.biz.Core.Types
 		private readonly Thread _thread;
 		private bool _disposed;
 
+		/// <summary>
+		/// Constructs a new <see cref="ActionBuffer"/>.
+		/// </summary>
+		/// <remarks>
+		/// The execution thread will be named <c>ActionBuffer</c>.
+		/// </remarks>
 		public ActionBuffer() : this(null) { }
 
+		/// <summary>
+		/// Constructs a new <see cref="ActionBuffer"/> and names the execution thread.
+		/// </summary>
+		/// <param name="name">The name of the execution thread.</param>
 		public ActionBuffer(string name)
 		{
 			this._thread = new Thread(this.ThreadLoop) { IsBackground = true };
@@ -39,6 +52,10 @@ namespace syp.biz.Core.Types
 		}
 		#endregion IDisposable
 
+		/// <summary>
+		/// Enqueues an <paramref name="action"/> to be executed on the execution thread.
+		/// </summary>
+		/// <param name="action">The action to enqueue.</param>
 		public void Enqueue(Action action)
 		{
 //			this.ThrowOnDisposed();

@@ -5,6 +5,13 @@ using syp.biz.Core.Extensions;
 
 namespace syp.biz.Core.Configuration
 {
+    /// <summary>
+    /// See: <see cref="ConfigurationBase{T}"/>.<br/>
+    /// Derived classes automatically create have managed configuration file.
+    /// </summary>
+    /// <remarks>
+    /// Use the generic version <see cref="ConfigurationBase{T}"/> instead.
+    /// </remarks>
     public abstract class ConfigurationBase
     {
         #region Fields
@@ -12,8 +19,11 @@ namespace syp.biz.Core.Configuration
         #endregion Fields
 
         #region Constructors
+        /// <summary>
+        /// Creates a new instance of <see cref="ConfigurationBase"/> backed by the <paramref name="configFilePath"/>.
+        /// </summary>
+        /// <param name="configFilePath">The file behind the configuration object.</param>
         protected ConfigurationBase(string configFilePath) => this._configFilePath = configFilePath;
-
         #endregion Constructors
 
         #region Properties
@@ -61,6 +71,17 @@ namespace syp.biz.Core.Configuration
         #endregion Methods
     }
 
+    /// <summary>
+    /// Derived classes automatically create have managed configuration file.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// internal class MyConfig : ConfigurationBase&lt;MyConfig&gt;
+    /// {
+    ///     public string MySetting {get; set;} = "default value";
+    /// }
+    /// </code>
+    /// </example>
     public abstract class ConfigurationBase<T> : ConfigurationBase where T : ConfigurationBase, new()
     {
         #region Fields
@@ -73,14 +94,35 @@ namespace syp.biz.Core.Configuration
         #endregion Fields
 
         #region Constructors
+        /// <summary>
+        /// Creates a new instance of <see cref="ConfigurationBase"/>.
+        /// </summary>
+        /// <param name="configFileDirectory">The folder where the configuration file is expected to be.</param>
+        /// <param name="configName">The name of the configuration.</param>
         protected ConfigurationBase(string configFileDirectory, string configName) : base(Path.Combine(Path.GetDirectoryName(configFileDirectory) ?? "", configName)) { }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="ConfigurationBase"/>.
+        /// </summary>
+        /// <param name="type">The type associated with the configuration.</param>
+        /// <remarks>
+        /// This will call the <see cref="ConfigurationBase{T}(string, string)"/> constructor with the <paramref name="type"/>'s assembly location and name (with a <c>.json</c> extension).
+        /// </remarks>
         protected ConfigurationBase(Type type) : this(type.Assembly.Location, $"{type.FullName}.json") { }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="ConfigurationBase"/>.
+        /// </summary>
+        /// <remarks>
+        /// This will call the <see cref="ConfigurationBase{T}(Type)"/> constructor with the <typeparamref name="T"/>'s type.
+        /// </remarks>
         protected ConfigurationBase() : this(typeof(T)) { }
         #endregion Constructors
 
         #region Properties
+        /// <summary>
+        /// The current state of the configuration.
+        /// </summary>
         public static T Current => LazyCurrent.Value;
         #endregion Properties
 

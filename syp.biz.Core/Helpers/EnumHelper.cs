@@ -28,11 +28,14 @@ namespace syp.biz.Core.Helpers
         private static Dictionary<T, string> BuildNamesDictionary(Type type)
         {
             return type.GetFields(BindingFlags.Static | BindingFlags.Public)
+#pragma warning disable IDE0037 // Use inferred member name
                 .Select(f => new
                 {
                     Value = (T)f.GetValue(null),
+                    // ReSharper disable once RedundantAnonymousTypePropertyName
                     Description = f.GetCustomAttribute<DescriptionAttribute>()?.Description
                 })
+#pragma warning restore IDE0037 // Use inferred member name
                 .ToDictionary(f => f.Value, f => f.Description ?? f.Value.ToString(CultureInfo.InvariantCulture));
         }
 

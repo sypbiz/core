@@ -2,6 +2,9 @@
 
 namespace syp.biz.Core.Extensions
 {
+    /// <summary>
+    /// A collection of dictionary related extension methods.
+    /// </summary>
     public static class DictionaryExtensions
     {
         /// <summary>
@@ -39,10 +42,10 @@ namespace syp.biz.Core.Extensions
         /// <typeparam name="TKey">The type of the <paramref name="dictionary"/>'s key.</typeparam>
         /// <typeparam name="TValue">The type of the <paramref name="dictionary"/>'s value.</typeparam>
         /// <param name="dictionary">The dictionary to query.</param>
-        /// <param name="key">The key to retreive.</param>
-        /// <param name="defaultValue">Optional. A value to return in case <paramref name="dictionary"/> is <c>null</c> or <paramref name="key"/> is not found. Default is default(<see cref="TValue"/>).</param>
+        /// <param name="key">The key to retrieve.</param>
+        /// <param name="defaultValue">Optional. A value to return in case <paramref name="dictionary"/> is <c>null</c> or <paramref name="key"/> is not found. Default is default(<typeparamref name="TValue"/>).</param>
         /// <returns>The value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="dictionary"/> is <c>null</c> or <paramref name="key"/> is not found.</returns>
-        public static TValue SafeGet<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue = default(TValue))
+        public static TValue SafeGet<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue = default)
         {
             return dictionary != null && dictionary.TryGetValue(key, out var value)
                 ? value

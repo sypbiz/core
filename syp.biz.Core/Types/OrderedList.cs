@@ -9,6 +9,10 @@ namespace syp.biz.Core.Types
 	/// <typeparam name="T">The type of element to store and order by.</typeparam>
 	public sealed class OrderedList<T> : SortedList<T, T>
 	{
+		/// <summary>
+		/// Constructs a new <see cref="OrderedList{T}"/> with the provided <paramref name="comparer"/>.
+		/// </summary>
+		/// <param name="comparer">A comparer delegate to compare the objects in the list.</param>
 		public OrderedList(DelegateComparer<T>.CompareDelegate comparer) : base(new DelegateComparer<T>(GetEqualBypass(comparer))) { }
 
 		private static DelegateComparer<T>.CompareDelegate GetEqualBypass(DelegateComparer<T>.CompareDelegate comparer)
@@ -19,15 +23,13 @@ namespace syp.biz.Core.Types
 				return result != 0 ? result : Comparer<int>.Default.Compare(x.GetHashCode(), y.GetHashCode());
 			};
 		}
+
 		/// <summary>
 		/// Adds an element into the <see cref="OrderedList{T}"/>.
 		/// </summary>
 		/// <param name="item">The value of the element to add.</param>
 		/// <exception cref="ArgumentNullException">Item is null.</exception>
 		/// <exception cref="ArgumentException">An element with the same key already exists in the <see cref="OrderedList{T}"/></exception>
-		public void Add(T item)
-		{
-			this.Add(item, item);
-		}
+		public void Add(T item) => this.Add(item, item);
 	}
 }

@@ -2,16 +2,16 @@
 
 namespace syp.biz.Core.Extensions
 {
+    /// <summary>
+    /// A collection of thread related extension methods.
+    /// </summary>
     public static class ThreadExtensions
     {
         /// <summary>
         /// Sets the name of the current <see cref="Thread"/> to <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The new thread name.</param>
-        public static bool TrySetName(string name)
-        {
-            return TrySetName(Thread.CurrentThread, name);
-        }
+        public static bool TrySetName(string name) => TrySetName(Thread.CurrentThread, name);
 
         /// <summary>
         /// Sets the name of <paramref name="thread"/> to <paramref name="name"/>.

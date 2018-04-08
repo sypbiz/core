@@ -8,9 +8,41 @@ namespace syp.biz.Core.Logging
 	public class NullLogger : ILogger
 	{
 		#region Implementation of ILogger
-		public bool LogDebugLevel { get; set; } = false;
-		public bool LogInfoLevel { get; set; } = false;
-		public bool LogErrorLevel { get; set; } = false;
+		/// <summary>
+		/// Denotes if the logger should log debug level messages.
+		/// </summary>
+		/// <remarks>
+		/// Always <c>false</c>. Setter is ignored.
+		/// </remarks>
+		public bool LogDebugLevel
+		{
+			get => false;
+			set { /* ignore */ }
+		}
+
+		/// <summary>
+		/// Denotes if the logger should log info level messages.
+		/// </summary>
+		/// <remarks>
+		/// Always <c>false</c>. Setter is ignored.
+		/// </remarks>
+		public bool LogInfoLevel
+		{
+			get => false;
+			set { /* ignore */ }
+		}
+
+		/// <summary>
+		/// Denotes if the logger should log error level messages.
+		/// </summary>
+		/// <remarks>
+		/// Always <c>false</c>. Setter is ignored.
+		/// </remarks>
+		public bool LogErrorLevel
+		{
+			get => false;
+			set { /* ignore */ }
+		}
 
 		/// <summary>
 		/// Does not log as debug.

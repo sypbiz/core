@@ -2,6 +2,9 @@
 
 namespace syp.biz.Core.Extensions
 {
+    /// <summary>
+    /// A collection of primitive types related extension methods.
+    /// </summary>
     public static class PrimitiveExtensions
     {
         /// <summary>

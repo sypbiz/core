@@ -10,6 +10,9 @@ using syp.biz.Core.Extensions;
 
 namespace syp.biz.Core.Helpers
 {
+    /// <summary>
+    /// An <see cref="ApartmentState.STA"/> task scheduler.
+    /// </summary>
     public sealed class STATaskScheduler : TaskScheduler, IDisposable
     {
         private static readonly int MaxThreads = (int) ConfigSTA.Current.MaxThreads;
@@ -20,6 +23,9 @@ namespace syp.biz.Core.Helpers
 
         private STATaskScheduler() => this.InitThreadPool(MinThreads);
 
+        /// <summary>
+        /// The instance of the <see cref="ApartmentState.STA"/> task scheduler.
+        /// </summary>
         public static STATaskScheduler Instance { get; } = new STATaskScheduler();
 
         #region Overrides of TaskScheduler
